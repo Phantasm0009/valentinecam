@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffcccb;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        h1 {
+            color: #d63384;
+        }
+        .buttons {
+            position: relative;
+            width: 90vw;
+            height: 90vh;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffcccb;
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            position: absolute;
+            transition: left 0.1s ease-in-out, top 0.1s ease-in-out; /* Fast transition */
+        }
+        #yes {
+            background-color: #28a745;
+            color: white;
+            position: absolute;
+            left: 40%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #no {
+            background-color: #dc3545;
+            color: white;
+            left: 60%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #d63384;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hey Camila, will you be my Valentine? 💖</h1>
+    <div class="buttons">
+        <button id="yes" onclick="confirmYes()">Yes</button>
+        <button id="no" onmouseover="moveButton()">No</button>
+    </div>
+    <p id="message"></p>
+
+    <script>
+        const messages = [
+            "You sure? 😢", 
+            "Think again... 😭", 
+            "Ouch, that hurts 💔", 
+            "I can't believe this... 😔", 
+            "Why won't you say yes? 🥲", 
+            "Don't leave me hanging... 😭"
+        ];
+
+        function moveButton() {
+            let button = document.getElementById("no");
+            let container = document.querySelector(".buttons");
+            let maxX = container.clientWidth - button.clientWidth;
+            let maxY = container.clientHeight - button.clientHeight;
+
+            // Generate random position within the container
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+
+            // Move the button with a fast transition
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+
+            // Change the text of the button
+            button.innerText = messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        function confirmYes() {
+            document.body.innerHTML = "<h1>Yay! Can't wait for our date! ❤️🥰</h1>";
+        }
+    </script>
+</body>
+</html>
